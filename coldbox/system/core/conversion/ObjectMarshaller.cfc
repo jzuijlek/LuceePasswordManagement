@@ -23,7 +23,7 @@ Description :
 			// Algorithm detection
 			instance = structnew();
 			instance.algorithm = "generic";
-			if( engine eq CFMLEngine.RAILO ){ instance.algorithm = "railo"; }
+			if( engine eq CFMLEngine.lucee ){ instance.algorithm = "lucee"; }
 			if( engine eq CFMLEngine.ADOBE and version GTE 9 ){ instance.algorithm = "objectSave"; }
 
 			return this;
@@ -42,8 +42,8 @@ Description :
 					binaryData = serializeGeneric(arguments.target);
 					break;
 				}
-				case "railo" : {
-					binaryData = serializeRailo(arguments.target);
+				case "lucee" : {
+					binaryData = serializelucee(arguments.target);
 					break;
 				}
 				case "objectSave" : {
@@ -79,8 +79,8 @@ Description :
 					obj = deserializeGeneric(arguments.binaryObject);
 					break;
 				}
-				case "railo" : {
-					obj = deserializeRailo(arguments.binaryObject);
+				case "lucee" : {
+					obj = deserializelucee(arguments.binaryObject);
 					break;
 				}
 				case "objectSave" : {
@@ -95,14 +95,14 @@ Description :
 
 <!------------------------------------------- PRIVATE ------------------------------------------>
 
-	<!--- serializeRailo --->
-	<cffunction name="serializeRailo" output="false" access="public" returntype="any" hint="Serialize the railo way">
+	<!--- serializelucee --->
+	<cffunction name="serializelucee" output="false" access="public" returntype="any" hint="Serialize the lucee way">
 		<cfargument name="target"   type="any" 		required="true" 	hint="The complex object, such as a query or CFC, that will be serialized."/>
 	   	<cfreturn serialize(arguments.target)>
 	</cffunction>
 
-	<!--- deserializeRailo --->
-	<cffunction name="deserializeRailo" output="false" access="public" returntype="any" hint="Deserialize the railo way">
+	<!--- deserializelucee --->
+	<cffunction name="deserializelucee" output="false" access="public" returntype="any" hint="Deserialize the lucee way">
 		<cfargument name="binaryObject" type="any" 		required="false" hint="The binary object to inflate"/>
 		<cfreturn evaluate(arguments.binaryObject)>
 	</cffunction>

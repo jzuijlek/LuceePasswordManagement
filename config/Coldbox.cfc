@@ -1,8 +1,8 @@
 ﻿component{
 	function configure(){
 		coldbox = {
-			appName = "RailoPassMan"
-			
+			appName = "luceePassMan"
+
 		};
 	}
 }
